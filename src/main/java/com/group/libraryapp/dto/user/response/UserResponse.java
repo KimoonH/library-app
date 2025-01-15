@@ -5,12 +5,18 @@ import com.group.libraryapp.domain.user.User;
 public class UserResponse {
 
     private long id;
-    private String username;
+    private String name;
     private Integer age;
+
+    public UserResponse(long id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
     public UserResponse(long id, User user) {
         this.id = id;
-        this.username = user.getName();
+        this.name = user.getName();
         this.age = user.getAge();
     }
 
@@ -18,8 +24,8 @@ public class UserResponse {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public Integer getAge() {

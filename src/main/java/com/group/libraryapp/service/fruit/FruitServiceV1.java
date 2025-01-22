@@ -3,27 +3,27 @@ package com.group.libraryapp.service.fruit;
 import com.group.libraryapp.dto.fruit.request.FruitCreateRequest;
 import com.group.libraryapp.dto.fruit.request.FruitUpdateRequest;
 import com.group.libraryapp.dto.fruit.response.FruitStatResponse;
-import com.group.libraryapp.repository.fruit.FruitRepository;
+import com.group.libraryapp.repository.fruit.FruitRepositoryV1;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FruitService {
+public class FruitServiceV1 {
 
-    private final FruitRepository fruitRepository;
+    private final FruitRepositoryV1 fruitRepositoryV1;
 
-    public FruitService(FruitRepository fruitRepository) {
-        this.fruitRepository = fruitRepository;
+    public FruitServiceV1(FruitRepositoryV1 fruitRepositoryV1) {
+        this.fruitRepositoryV1 = fruitRepositoryV1;
     }
 
     public void createFruit(FruitCreateRequest request) {
-        fruitRepository.createFruit(request);
+        fruitRepositoryV1.createFruit(request);
     }
 
     public void updateFruit(FruitUpdateRequest request) {
-        fruitRepository.updateFruit(request);
+        fruitRepositoryV1.updateFruit(request);
     }
 
     public FruitStatResponse statFruit(String name) {
-        return fruitRepository.statFruit(name);
+        return fruitRepositoryV1.statFruit(name);
     }
 }

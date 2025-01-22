@@ -3,17 +3,19 @@ package com.group.libraryapp.repository.fruit;
 import com.group.libraryapp.dto.fruit.request.FruitCreateRequest;
 import com.group.libraryapp.dto.fruit.request.FruitUpdateRequest;
 import com.group.libraryapp.dto.fruit.response.FruitStatResponse;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Primary
 @Repository
-public class FruitMemoryRepository implements FruitRepository {
+public class FruitMySqlRepositoryV1 implements FruitRepositoryV1 {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public FruitMemoryRepository(JdbcTemplate jdbcTemplate) {
+    public FruitMySqlRepositoryV1(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -47,6 +49,7 @@ public class FruitMemoryRepository implements FruitRepository {
         for(Long price : notSalesPrices) {
             notSalesAmount += price;
         }
+
         return new FruitStatResponse(salesAmount, notSalesAmount);
     }
 }

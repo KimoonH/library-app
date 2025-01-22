@@ -1,13 +1,33 @@
 package com.group.libraryapp.domain.fruit;
 
+import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
 public class Fruit {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column
+    private LocalDate warehousingDate;
+    @Column(nullable = false)
     private long price;
+    @ColumnDefault("0")
     private int salesYN;
 
-    public Fruit() {
+
+    protected Fruit() {};
+
+    public Fruit(String name, long price) {
+        this.name = name;
+        this.price = price;
     }
 
     public Fruit(long id, String name, long price, int salesYN) {
@@ -31,5 +51,13 @@ public class Fruit {
 
     public int getSalesYN() {
         return salesYN;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSalesYN() {
+        this.salesYN = 1;
     }
 }

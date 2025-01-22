@@ -4,7 +4,7 @@ import com.group.libraryapp.dto.fruit.request.FruitCreateRequest;
 import com.group.libraryapp.dto.fruit.request.FruitUpdateRequest;
 import com.group.libraryapp.dto.fruit.response.FruitStatResponse;
 
-public interface FruitRepository {
+public interface FruitRepositoryV1 {
 
     void createFruit(FruitCreateRequest request);
 

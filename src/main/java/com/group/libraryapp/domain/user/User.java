@@ -1,8 +1,11 @@
 package com.group.libraryapp.domain.user;
 
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
 import com.group.libraryapp.dto.user.response.UserResponse;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,6 +17,10 @@ public class User {
     private String name;
     @Column(nullable = false)
     private Integer age;
+
+    @JoinColumn(nullable = false)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
     // JPA에서 기본 생성자
     protected User() {}
@@ -42,5 +49,19 @@ public class User {
 
     public void updateName(String name) {
         this.name = name;
+    }
+
+    // 책 대출
+    public void loanBook(String bookName) {
+        this.userLoanHistories.add(new UserLoanHistory(this, bookName));
+    }
+
+    public void returnBook(String bookName) {
+        UserLoanHistory targetHistory = this.userLoanHistories.stream()
+                .filter(history -> history.getBookName().equals(bookName))
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
+
+        targetHistory.doReturn();
     }
 }

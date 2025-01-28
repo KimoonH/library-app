@@ -18,7 +18,6 @@ public class User {
     @Column(nullable = false)
     private Integer age;
 
-    @JoinColumn(nullable = false)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 

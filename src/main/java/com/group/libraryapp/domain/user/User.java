@@ -5,7 +5,7 @@ import com.group.libraryapp.dto.user.response.UserResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
